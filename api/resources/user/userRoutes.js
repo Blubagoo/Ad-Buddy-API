@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-	return res.json({message: 'this route is set up properly'});
-});
+const { getUser, newUser } =  require('./userCtrl');
+
+router.get('/:userID', (req,res) => getUser(req,res,req.params.userID));
+router.post('/newUser', (req,res) => {
+	console.log('new user route');
+	return newUser(req,res);
+})
 
 module.exports = router;
